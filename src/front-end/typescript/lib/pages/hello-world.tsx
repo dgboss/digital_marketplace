@@ -13,16 +13,12 @@ import { ADT } from "shared/lib/types";
 
 export type RouteParams = null;
 
-export interface State  {
-  counter: number;
-}
+export type State =  {};
 
 export type Msg = GlobalComponentMsg<ADT<"noop">, Route>;
 
 const init: PageInit<RouteParams, SharedState, State, Msg> = async () => {
-  return {
-    counter: 0
-  };
+  return {};
 };
 
 const update: Update<State, Msg> = ({ state, msg }) => {
