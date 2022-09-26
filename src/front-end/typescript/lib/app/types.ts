@@ -6,6 +6,7 @@ import * as PageContentEdit from "front-end/lib/pages/content/edit";
 import * as PageContentList from "front-end/lib/pages/content/list";
 import * as PageContentView from "front-end/lib/pages/content/view";
 import * as PageDashboard from "front-end/lib/pages/dashboard";
+import * as PageHelloWorld from "front-end/lib/pages/hello-world";
 import * as PageLanding from "front-end/lib/pages/landing";
 import * as PageLearnMoreCWU from "front-end/lib/pages/learn-more/code-with-us";
 import * as PageLearnMoreSWU from "front-end/lib/pages/learn-more/sprint-with-us";
@@ -83,7 +84,8 @@ export type Route =
   | ADT<"proposalCWUView", PageProposalCWUView.RouteParams>
   | ADT<"proposalCWUExportOne", PageProposalCWUExportOne.RouteParams>
   | ADT<"proposalCWUExportAll", PageProposalCWUExportAll.RouteParams>
-  | ADT<"proposalList", PageProposalList.RouteParams>;
+  | ADT<"proposalList", PageProposalList.RouteParams>
+  | ADT<"helloWorld", PageHelloWorld.RouteParams>;
 
 const routesAllowedForUsersWithUnacceptedTerms: Array<Route["tag"]> = [
   "signUpStepTwo",
@@ -161,6 +163,7 @@ export interface State {
     proposalCWUExportOne?: Immutable<PageProposalCWUExportOne.State>;
     proposalCWUExportAll?: Immutable<PageProposalCWUExportAll.State>;
     proposalList?: Immutable<PageProposalList.State>;
+    helloWorld?: Immutable<PageHelloWorld.State>;
   };
 }
 
@@ -212,6 +215,7 @@ type InnerMsg =
   | ADT<"pageProposalCWUView", PageProposalCWUView.Msg>
   | ADT<"pageProposalCWUExportOne", PageProposalCWUExportOne.Msg>
   | ADT<"pageProposalCWUExportAll", PageProposalCWUExportAll.Msg>
-  | ADT<"pageProposalList", PageProposalList.Msg>;
+  | ADT<"pageProposalList", PageProposalList.Msg>
+  | ADT<"pageHelloWorld", PageHelloWorld.Msg>;
 
 export type Msg = AppMsg<InnerMsg, Route>;

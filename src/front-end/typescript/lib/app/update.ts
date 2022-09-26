@@ -25,6 +25,7 @@ import * as PageContentEdit from "front-end/lib/pages/content/edit";
 import * as PageContentList from "front-end/lib/pages/content/list";
 import * as PageContentView from "front-end/lib/pages/content/view";
 import * as PageDashboard from "front-end/lib/pages/dashboard";
+import * as PageHelloWorld from "front-end/lib/pages/hello-world";
 import * as PageLanding from "front-end/lib/pages/landing";
 import * as PageLearnMoreCWU from "front-end/lib/pages/learn-more/code-with-us";
 import * as PageLearnMoreSWU from "front-end/lib/pages/learn-more/sprint-with-us";
@@ -365,6 +366,18 @@ async function initPage(
         mapChildMsg(value) {
           return { tag: "pageUserList" as const, value };
         }
+      });
+
+    case "helloWorld":
+      return await initAppChildPage({
+          ...defaultPageInitParams,
+          childStatePath: ["pages", "helloWorld"],
+          childRouteParams: route.value,
+          childInit: PageHelloWorld.component.init,
+          childGetMetadata: PageHelloWorld.component.getMetadata,
+          mapChildMsg(value) {
+            return { tag: "pageHelloWorld" as const, value };
+          }
       });
 
     case "landing":
@@ -1148,6 +1161,16 @@ const update: Update<State, Msg> = ({ state, msg }) => {
         childStatePath: ["pages", "notFound"],
         childUpdate: PageNotFound.component.update,
         childGetMetadata: PageNotFound.component.getMetadata,
+        childMsg: msg.value
+      });
+
+    case "pageHelloWorld":
+      return updateAppChildPage({
+        ...defaultPageUpdateParams,
+        mapChildMsg: (value) => ({ tag: "pageHelloWorld", value }),
+        childStatePath: ["pages", "helloWorld"],
+        childUpdate: PageHelloWorld.component.update,
+        childGetMetadata: PageHelloWorld.component.getMetadata,
         childMsg: msg.value
       });
 

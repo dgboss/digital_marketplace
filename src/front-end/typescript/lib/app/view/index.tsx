@@ -31,6 +31,7 @@ import * as PageContentEdit from "front-end/lib/pages/content/edit";
 import * as PageContentList from "front-end/lib/pages/content/list";
 import * as PageContentView from "front-end/lib/pages/content/view";
 import * as PageDashboard from "front-end/lib/pages/dashboard";
+import * as PageHelloWorld from "front-end/lib/pages/hello-world";
 import * as PageLanding from "front-end/lib/pages/landing";
 import * as PageLearnMoreCWU from "front-end/lib/pages/learn-more/code-with-us";
 import * as PageLearnMoreSWU from "front-end/lib/pages/learn-more/sprint-with-us";
@@ -424,6 +425,14 @@ function pageToViewPageProps(
         PageNotFound.component,
         (state) => state.pages.notFound,
         (value) => ({ tag: "pageNotFound", value })
+      );
+
+    case "helloWorld":
+      return makeViewPageProps(
+        props,
+        PageHelloWorld.component,
+        (state) => state.pages.helloWorld,
+        (value) => ({ tag: "pageHelloWorld", value })
       );
   }
 }

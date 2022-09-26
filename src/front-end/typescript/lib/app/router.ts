@@ -459,6 +459,15 @@ const router: Router.Router<Route> = {
       }
     },
     {
+      path: prefixPath("/hello-world"),
+      makeRoute() {
+        return {
+          tag: "helloWorld",
+          value: null
+        };
+      }
+    },
+    {
       path: "(.*)",
       makeRoute({ path }) {
         return adt("notFound", { path });
@@ -643,6 +652,8 @@ const router: Router.Router<Route> = {
         })();
       case "notFound":
         return route.value.path || prefixPath("/not-found");
+      case "helloWorld":
+        return prefixPath("/hello-world");
     }
   }
 };
